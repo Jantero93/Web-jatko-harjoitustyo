@@ -1,0 +1,24 @@
+
+
+.list {
+  /*
+  text-align: left;
+  max-width: 900px;  
+  margin-left: 1rem;
+  */
+}
+
+.submit-form {
+  max-width: 300px;
+  margin-left: 1rem; 
+}
+
+.edit-form {
+  max-width: 400px;
+  margin-left: 1rem;
+}
+
+.weather_text {
+  text-align: "center";
+}
+
