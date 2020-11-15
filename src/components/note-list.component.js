@@ -142,8 +142,7 @@ export default class NotesList extends Component {
 
         </Col>
         
-      </Row>
-
+      </Row>  
 
       </div>
     );
