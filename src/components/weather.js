@@ -18,7 +18,7 @@ export default class Weather extends Component {
             color: 'white',
            
         };
-        this.getWeather();
+     //   this.getWeather();
 
     }
     // ehkä oikea https://api.openweathermap.org/data/2.5/weather?id=32906&appid=881e2e4957f0b379389af22826a33532&units=metric
@@ -26,19 +26,13 @@ export default class Weather extends Component {
     getWeather = async () => {
         const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?id=634964&appid=881e2e4957f0b379389af22826a33532&units=metric`)
         const response = await api_call.json();
-/*
-        console.log('apidata', response);
-        this.temp = response.main.temp;
-        this.feels_like = response.main.feels_like;
-        this.humidity = response.main.humidity;
-        this.description = response.weather[0].description;
-        this.place = response.name;
-        */
+    
         let today = new Date();
-
         let sunset = response.sys.sunset;
-       let sunrise = response.sys.sunrise;
-       // this.color = 'white'
+        let sunrise = response.sys.sunrise;
+
+       console.log("auringonnousu",response.sys.sunrise);
+
         let time;
         if (today.getMinutes() < 10) {
             time = today.getHours() + ":" + '0' + today.getMinutes();
@@ -47,14 +41,28 @@ export default class Weather extends Component {
         }
         // unix aika oikeaksi ajaksi, auringonlasku
         today = new Date(1000 * sunset);
-        sunset = today.getHours() + ":" + today.getMinutes();
 
-        // unix aika oikeaksi ajaksi, auringonnousu
-        today = new Date(1000* sunrise);
-        sunrise = today.getHours() + ":" + today.getMinutes();
+        if (today.getMinutes() < 10) {
+            sunset = today.getHours() + ":" + '0' + today.getMinutes();
+        } else {
+            sunset = today.getHours() + ":" + today.getMinutes();
+        }
+
+
+
+       
+        today = new Date(1000 * sunrise);
+
+        if (today.getMinutes() < 10) {
+            sunrise = today.getHours() + ":" + '0' + today.getMinutes();
+        } else {
+            sunrise = today.getHours() + ":" + today.getMinutes();
+        }
+
+        //sunrise = today.getHours() + ":" + today.getMinutes();
 
         //console.log('lampotila: ',this.temp)
-        
+
         this.setState({
             time: time,
             temp: response.main.temp,
@@ -65,10 +73,11 @@ export default class Weather extends Component {
             sunrise: sunrise,
             sunset: sunset,
             color: 'white',
-           // data: [],
+           
         });
     }
-
+  
+    
     componentDidMount(){
         this.getWeather();
     }
@@ -92,7 +101,6 @@ export default class Weather extends Component {
                         <Card.Header>Time</Card.Header>
                         <Card.Body>
                             <Card.Title>{this.state.time} </Card.Title>
-
                         </Card.Body>
                     </Card>
 
@@ -108,7 +116,6 @@ export default class Weather extends Component {
                         <Card.Header>Temperature</Card.Header>
                         <Card.Body>
                             <Card.Title> {Math.round(this.state.temp * 10) / 10} celsius </Card.Title>
-
                         </Card.Body>
                     </Card>
 
@@ -152,7 +159,6 @@ export default class Weather extends Component {
                         <Card.Header>City</Card.Header>
                         <Card.Body>
                             <Card.Title>{this.state.place} </Card.Title>
-
                         </Card.Body>
                     </Card>
 
@@ -197,10 +203,6 @@ export default class Weather extends Component {
                     </Card>
 
                 </Row>
-
-
-
-
             </Container>
             </div>
         );
@@ -208,11 +210,3 @@ export default class Weather extends Component {
 
 }
 
-/*
-<h1>Time: {this.time} </h1>
-                <h1>Place: {this.place} </h1>
-                <h1>Temperature: {Math.round(this.temp * 10) / 10} celsius</h1>
-                <h1>Feels like: {Math.round(this.feels_like * 10) / 10} celsius</h1>
-                <h1>Humidity: {this.humidity} % </h1>
-                <h1>Description: {this.description} </h1>
-            */

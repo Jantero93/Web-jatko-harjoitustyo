@@ -6,7 +6,6 @@ export default class Note extends Component {
     super(props);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
-  //  this.updatePublished = this.updatePublished.bind(this);
     this.updateNote = this.updateNote.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
 
@@ -14,8 +13,7 @@ export default class Note extends Component {
       currentNote: {
         key: null,
         title: "",
-        description: "",
-      //  published: false,
+        description: ""     
       },
       message: "",
     };
@@ -62,25 +60,7 @@ export default class Note extends Component {
       },
     }));
   }
-/*
-  updatePublished(status) {
-    NoteDataService.update(this.state.currentNote.key, {
-      published: status,
-    })
-      .then(() => {
-        this.setState((prevState) => ({
-          currentNote: {
-            ...prevState.currentNote,
-            published: status,
-          },
-          message: "The status was updated successfully!",
-        }));
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }
- */
+
   updateNote() {
     const data = {
       title: this.state.currentNote.title,
@@ -90,14 +70,9 @@ export default class Note extends Component {
     //päivitään databaseen
     NoteDataService.update(this.state.currentNote.key, data)
       .then(() => {
-        this.setState({
-        
+        this.setState({        
         });
-      })
-      /*
-      .catch((e) => {
-        console.log(e);
-      }); */
+      })  
   }
 
   //päivitetään databaseen 
@@ -107,10 +82,6 @@ export default class Note extends Component {
         this.props.refreshList();
        
       })
-      /*
-      .catch((e) => {
-        console.log(e);
-      }); */
   }
 
   render() {

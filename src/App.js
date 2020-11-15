@@ -22,7 +22,7 @@ class App extends Component {
       
       <div className="website">
 
-        <Navbar bg="dark" expand="lg" text="white">
+        <Navbar bg="dark" expand="sm" text="white">
 
 
           <Navbar.Brand href="/"><p1
