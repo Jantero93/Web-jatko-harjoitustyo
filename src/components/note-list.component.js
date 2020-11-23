@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import NoteDataService from "../services/note.service";
-import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
@@ -34,17 +33,16 @@ export default class NotesList extends Component {
   //data vaihtuu notessa niin lista uusiksi
   onDataChange(items) {
     let notes = [];
-    //  console.log('items: ',items)
+
 
     items.forEach((item) => {
-      //  console.log('item: ', item)
+   
       let key = item.key;
       let data = item.val();
       notes.push({
         key: key,
         title: data.title,
-        description: data.description,
-        // published: data.published,
+        description: data.description     
       });
     });
 
@@ -73,10 +71,6 @@ export default class NotesList extends Component {
       .then(() => {
         this.refreshList();
       })
-      /*
-      .catch((e) => {
-        console.log(e);
-      }); */
   }
 
   render() {
@@ -123,7 +117,6 @@ export default class NotesList extends Component {
             Remove All
           </button>
 
-
         </Col>
 
         <Col>
@@ -140,8 +133,7 @@ export default class NotesList extends Component {
               </div>
             )}
 
-        </Col>
-        
+        </Col>        
       </Row>  
 
       </div>
@@ -149,64 +141,3 @@ export default class NotesList extends Component {
   }
 }
 
-
-
-{/*
-
-
- 
-      <div className="list row">
-        <div className="col-md-6">
-          <h4>Notes List</h4>
-       
-        { note list }
-        <ul className="list-group">
-        {/*notes && tarviiko?
-          notes.map((note, index) => (
-            <li
-              className={
-                silmäkarkkia bootstrapilla
-                "list-group-item " +
-                ?
-                (index === currentIndex ? "active" : "")
-              }
-              //asetetaan aktiivinen note
-              onClick={() => this.setActiveNote(note, index)}
-              key={index}
-            >
-              {note.title}
-            </li>
-          ))}
-      </ul>
-
-      <button
-        className="m-3 btn btn-sm btn-info"
-        onClick={this.removeAllNotes}
-      >
-        Remove All
-      </button>
-    </div>
-
-              
-    <div className="col-md-6">
-      {/* näytetään aktiivinen note tai teksti }
-      {currentNote ? (
-        <Note
-          note={currentNote}
-          refreshList={this.refreshList}
-        />
-      ) : (
-        <div>
-          <br />
-          <p>Click a Note</p>
-        </div>
-      )}
-    </div>
-  </div>
-
-
-  
-
-
-
-      */}

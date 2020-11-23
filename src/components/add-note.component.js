@@ -13,9 +13,7 @@ export default class AddNote extends Component {
     this.state = {
       title: "",
       description: "",
-      // published: false,
-
-      submitted: false,
+     
     };
   }
 
@@ -34,8 +32,7 @@ export default class AddNote extends Component {
   saveNote() {
     let data = {
       title: this.state.title,
-      description: this.state.description,
-      //  published: false
+      description: this.state.description    
     };
 
     //pushataan databaseen
@@ -55,10 +52,8 @@ export default class AddNote extends Component {
   newNote() {
     this.setState({
       title: "",
-      description: "",
-      published: false,
-      //renderi näyttää oikean palikan
-      submitted: false,
+      description: "",     
+      submitted: false
     });
   }
 

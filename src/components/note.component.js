@@ -119,6 +119,7 @@ export default class Note extends Component {
                   type="text"
                   className="form-control"
                   id="description"
+                  
                   value={currentNote.description}
                   //jos vaihtuu niin suoritetaan
                   onChange={this.onChangeDescription}
